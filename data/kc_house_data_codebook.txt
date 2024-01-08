@@ -15,7 +15,7 @@ sqft_basement - The square footage of the interior housing space that is below g
 yr_built - The year the house was initially built
 yr_renovated - The year of the house’s last renovation
 zipcode - What zipcode area the house is in
-lat - Lattitude
+lat - Latitude
 long - Longitude
 sqft_living15 - The square footage of interior housing living space for the nearest 15 neighbors
 sqft_lot15 - The square footage of the land lots of the nearest 15 neighbors

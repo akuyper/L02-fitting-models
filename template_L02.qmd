@@ -1,0 +1,202 @@
+---
+title: "L02 Fitting Models"
+subtitle: "Data Science 2 with R (STAT 301-2)"
+author: "YOUR NAME"
+
+format:
+  html:
+    toc: true
+    embed-resources: true
+    code-fold: false
+    link-external-newwindow: true
+
+execute:
+  warning: false
+  
+from: markdown+emoji 
+---
+
+:::{.callout-note collapse=true}
+## Reminder
+
+Students must work in an R project connected to a GitHub repository for each lab. The repository should be well organized and it should have all relevant files. Within the project/repo there should be an appropriately named qmd file and the associated rendered html file (see canvas for naming convention). There should be at least 1 R script but there could be a need or reason for several R scripts (they should be appropriately named and ordered). In some instances you may create and save output in your repo to be referenced in your write-ups (should be organized). Students should create update README files in GitHub accordingly. 
+
+Remember to **make this document your own!** Meaning you should play with the layout and think about removing unnecessary sections or items (like this callout box block). Conversely you may end up adding sections or items. Make sure all of your solutions are clearly identified and communicated. 
+:::
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+To link to your github **repo**sitory, appropriately edit the example link below. Meaning replace `https://your-github-repo-url` with your github repo url. Suggest verifying the link works before submitting.
+
+[https://your-github-repo-url](https://your-github-repo-url)
+
+:::
+
+## Overview
+
+The goal of this lab is to practice using `parsnip` to define and fit models using its standardized interface with a variety of models.
+
+This lab accompanies [4. The Ames housing data](https://www.tmwr.org/ames.html){target="_blank"}, [5. Spending our data](https://www.tmwr.org/splitting.html){target="_blank"}, and [6. Fitting models with parsnip](https://www.tmwr.org/models.html){target="_blank"} from [Tidy Modeling with R](https://www.tmwr.org/){target="_blank"}.
+
+::: {.callout-note collapse=true}
+
+## Setting a Seed
+
+Now that we are performing steps that involve randomness (data splitting) it is best practice to set a seed for the pseudo random algorithms. Why? Because it ensures our random steps are reproducible which has all kinds of practical benefits. Kind of mind blowing to replicate things that are supposed to be random! In general, we suggest setting a seed should towards the top of the document. Along with loading packages and initial data read-ins.
+
+Some might argue a seed should be set right before each step involving randomness, which is reasonable, but we prefer for it to be set once at the top of the document.
+:::
+
+## Data
+
+We will be using the `kc_house_data.csv` dataset found in the `\data` directory. The data set contains 21,613 house sale prices (`price`) and other information for homes sold between May 2014 and May 2015 in King County, WA. Take a moment to read the variable definitions in `kc_house_data_codebook.txt`.
+
+## Exercises
+
+### Exercise 1
+
+We are interested in building a predictive model for the sale prices in King County, WA. Our first step is to do a quick inspection of the outcome/target variable, **AND ONLY** the outcome/target variable, `price`.
+
+Are there issues with the distribution of `price`? If so, perform an appropriate transformation.
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+### Exercise 2
+
+Use the `rsample` package, part of `tidymodels`, to split the King County data into a **training** dataset and a **testing** dataset using stratified sampling.
+
+1.  Remember that this is a random process, and we want to be able to reproduce this specific sample every time we render. To do this, you need to set a seed. You should set a seed towards the top of your document, usually completed with the loading of packages. The seed number can be any number you like.
+
+2.  You should decide on the percentages to split the data into.
+
+After splitting, verify that each of the resulting data frames has the correct number of columns and rows.
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+Why are we splitting the data into training data and testing data?
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+::: {.callout-caution}
+
+As you work through this lab, pay close attention to which dataset you are using: training or testing.
+
+:::
+
+### Exercise 3
+
+For now we will ignore the process of feature engineering and focus on fitting several different models to predict the outcome/target variable with `waterfront`, `sqft_living`, `yr_built`, and `bedrooms`.
+
+Define and fit the following models to your training set using the `parsnip` package.
+
+- Ordinary linear regression
+- Regularized/penalized linear regression (elastic net `glmnet`) with `mixture = 1`, which is called lasso regression, with `penalty = 0.01`
+- Regularized/penalized linear regression (elastic net `glmnet`) with `mixture = 0` which is called ridge regression, with `penalty = 0.01`.
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+### Exercise 4
+
+Compare each of the fitted models from Exercise 3 using `broom::tidy()`. Output is not enough, you should write a few sentences.
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+### Exercise 5
+
+For each model, calculate and store the predicted values for the test set. 
+
+For the model fit using ordinary linear regression, include 95% prediction intervals. 
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+Why is it important to note that these predictions are on a log scale? If they aren't on a log scale, why aren't they?
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+*Thinking ahead:* How might we use these predicted values to compare each model's performance on the test set? 
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+### Exercise 6 
+
+Repeat exercise 5, but report predicted values and 95% prediction intervals, where possible, on original scale (not on log scale). 
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+Why might this be useful?
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+
+:::
+
+
+## Graduate Challenge
+
+::: callout-important
+
+Graduate students are required to complete this challenge. **It is optional for undergraduate students.**
+
+:::
+
+Repeat exercises 3-6 using these additional models:
+
+- Random forest model using `ranger` with `trees = 500` and `min_n = 5`
+- Regularized/penalized regression using a Bayesian approach (`rstanarm` package)
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE --- This work can simply be incorporated/integrated into exercises 3-6 or could opt to separate it. 
+
+:::
+

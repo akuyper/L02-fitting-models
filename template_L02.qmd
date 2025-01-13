@@ -2,24 +2,39 @@
 title: "L02 Fitting Models"
 subtitle: "Data Science 2 with R (STAT 301-2)"
 author: "YOUR NAME"
+pagetitle: "L02 YOUR NAME"
+date: today
 
 format:
   html:
     toc: true
+    toc-depth: 4
+    toc-location: left
     embed-resources: true
     code-fold: false
     link-external-newwindow: true
 
 execute:
   warning: false
-  
-from: markdown+emoji 
+
+from: markdown+emoji
+reference-location: margin
+citation-location: margin
 ---
 
-:::{.callout-note collapse=true}
-## Reminder
+:::{.callout-important collapse=true}
+## When completing your lab write-up
 
-Students must work in an R project connected to a GitHub repository for each lab. The repository should be well organized and it should have all relevant files. Within the project/repo there should be an appropriately named qmd file and the associated rendered html file (see canvas for naming convention). There should be at least 1 R script but there could be a need or reason for several R scripts (they should be appropriately named and ordered). In some instances you may create and save output in your repo to be referenced in your write-ups (should be organized). Students should create update README files in GitHub accordingly. 
+Students must work in an R project connected to a GitHub repository for each lab. The repository should be well organized and it should have all relevant files. Within the project/repo there should be
+
+- an appropriately named qmd file and 
+- the associated rendered html file (see canvas for naming convention);
+- there should be multiple R scripts (appropriately named and ordered) completing the work in the labs;
+- students should create/update README files in GitHub accordingly;
+
+Data processing and model fitting, especially model fitting, can take significant computational time. Re-running time consuming processes when rendering a document is extremely inefficient and must be avoided. 
+
+This means students should practice writing these processes in scripts, saving results, and then loading them correctly when needed in their lab write-ups. It sometimes will be necessary to display code (show it, but don't run it) or even hide some code chunks when providing answers in the lab write-up. 
 
 Remember to **make this document your own!** Meaning you should play with the layout and think about removing unnecessary sections or items (like this callout box block). Conversely you may end up adding sections or items. Make sure all of your solutions are clearly identified and communicated. 
 :::
@@ -44,9 +59,11 @@ This lab accompanies [4. The Ames housing data](https://www.tmwr.org/ames.html){
 
 ## Setting a Seed
 
-Now that we are performing steps that involve randomness (data splitting) it is best practice to set a seed for the pseudo random algorithms. Why? Because it ensures our random steps are reproducible which has all kinds of practical benefits. Kind of mind blowing to replicate things that are supposed to be random! In general, we suggest setting a seed should towards the top of the document. Along with loading packages and initial data read-ins.
+Now that we are performing steps that involve randomness (for example data splitting) it is best practice to set a seed for the pseudo random algorithms. 
 
-Some might argue a seed should be set right before each step involving randomness, which is reasonable, but we prefer for it to be set once at the top of the document.
+**Why?** Because it ensures our random steps are reproducible which has all kinds of practical benefits. Kind of mind blowing to replicate things that are supposed to be random! 
+
+Students should set the seed directly before any random process and make a comment/note at the top of any R script that alerts potential users that a random process is being used.
 :::
 
 ## Data

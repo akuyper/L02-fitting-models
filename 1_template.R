@@ -1,9 +1,4 @@
 # L02 fitting models ----
-# Stat 301-2
+# WHAT DOES SCRIPT DO?
 
 ## load packages ----
-
-
-## Exercises ----
-
-### Ex 1 ----
